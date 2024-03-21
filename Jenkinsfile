@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'java11' }
+    agent { label 'maha' }
     stages {
         stage('build') {
             when {
@@ -9,9 +9,9 @@ pipeline {
                 echo 'build'
                         withCredentials([usernamePassword(credentialsId: 'docker-maha', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh '''
-                                docker build -t maha/bakehouseiti:v${BUILD_NUMBER}-${BRANCH_NAME} .
+                                docker build -t mahatahoon/bakehouseiti:v${BUILD_NUMBER}-${BRANCH_NAME} .
                                 docker login -u ${USERNAME} -p ${PASSWORD}
-                                docker push maha/bakehouseiti:v${BUILD_NUMBER}-${BRANCH_NAME}
+                                docker push mahatahoon/bakehouseiti:v${BUILD_NUMBER}-${BRANCH_NAME}
                             '''
                         }
             }
